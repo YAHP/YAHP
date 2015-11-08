@@ -1,0 +1,13 @@
+install DirBuster
+notice the path in feeder.sh
+
+intall linkchecker
+sudo-apt get install linkchecker
+
+install requset and htmlparser2
+npm install request
+npm install htmlparser2
+
+How to run?
+node findalldomain.js ip
+sh feeder.sh (please set the time of running DirBuster in code)
