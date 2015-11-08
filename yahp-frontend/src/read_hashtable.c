@@ -1,11 +1,13 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "hash_functions.h"
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include"hash_function.h"
 
 int main(int argc, char *argv[]){
-    FILE* hashtable_store = fopen("../sample/hashtable", "rb"); 
+    FILE* hashtable_store = fopen("../io/hashtable_store", "rb"); 
 
+    //unsigned hash_value = murmur(argv[1], strlen(argv[1]), 191);
+    //unsigned hash_value = djb2(argv[1]);
     unsigned hash_value_sdbm = sdbm(argv[1]);
 
     if (0 != fseek(hashtable_store,  hash_value_sdbm/8, SEEK_SET)) {

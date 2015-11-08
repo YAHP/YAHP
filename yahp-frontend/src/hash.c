@@ -1,7 +1,7 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "hash_functions.h"
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include"hash_function.h"
 
 struct node {
     char* url;
@@ -50,37 +50,48 @@ void insert(char* hashtable_output, struct node* hashtable, char* url) {
 
 int main() {
     
-    struct node hashtable[98317];
-    char hashtable_output[98317];
+    struct node hashtable[slot_num];
+    char hashtable_output[slot_num];
     
     int i = 0;
      
-    for (; i < 98317; i++) {
+    for (; i < slot_num; i++) {
         hashtable[i].url = NULL;
         hashtable[i].next = NULL;
     }
     
-    for (i = 0; i < 98317; i++) {
+    for (i = 0; i < slot_num; i++) {
         hashtable_output[i] = 0;
     }
 
     char* line;
     size_t len = 0;
-    FILE* urllist = fopen("../sample/blacklist", "r");
+    FILE* urllist = fopen("../io/urllist", "r");
     
     while ((getline(&line, &len, urllist)) != -1) {
         line = strtok(line, "\n");      
         insert(hashtable_output, hashtable, line);
     }
 
-    FILE* hashtable_store = fopen("../sample/hashtable", "wb");
+    FILE* hashtable_store = fopen("../io/hashtable_store", "wb");
     char currentbyte = 0;
-    for (i = 0; i < 98317; i++) {
+    for (i = 0; i < slot_num; i++) {
         currentbyte = currentbyte << 1 | hashtable_output[i];
         if (7 == i % 8) {
             fwrite(&currentbyte, sizeof(char), 1, hashtable_store);
         }
     }
+
+    FILE* hashtable_js = fopen("../io/hashtable.js", "w");
+    fwrite ("var hashtable = \"", sizeof(char), 17, hashtable_js);
+    for (i = 0; i < slot_num; i++) {
+        if (hashtable_output[i]) {
+            fwrite("1", sizeof(char), 1, hashtable_js);
+        } else {
+            fwrite("0", sizeof(char), 1, hashtable_js);
+        }
+    }
+    fwrite ("\";", sizeof(char), 2, hashtable_js);
 
     /*last byte here*/
 }

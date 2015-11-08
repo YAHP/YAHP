@@ -1,11 +1,11 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
 
 #define slot_num 98317 
 
 unsigned int djb2(unsigned char *str) {
-    unsigned long hash = 5381;
+    unsigned int hash = 5381;
     unsigned int c;
 
     while (c = *str++) {
@@ -16,7 +16,7 @@ unsigned int djb2(unsigned char *str) {
 }
 
 unsigned int sdbm(unsigned char *str) {
-    unsigned long hash = 0;
+    unsigned int hash = 0;
     unsigned int c;
     
     while (c = *str++) {
@@ -27,7 +27,7 @@ unsigned int sdbm(unsigned char *str) {
 }
 
 unsigned int fnv_1(unsigned char *str) {
-    unsigned hash = 2166136261;
+    unsigned int hash = 2166136261;
     unsigned int c;
 
     while (c = *str++) {

@@ -1,10 +1,10 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
 
 int main() {
     
-    FILE *origin_csv = fopen("../sample/blacklist_raw.csv", "r");
+    FILE *origin_csv = fopen("../io/export.csv", "r");
     if (NULL == origin_csv) {
         printf("Open failed!");
         return 1;
@@ -13,7 +13,7 @@ int main() {
     char* line;
     ssize_t line_length;	
     size_t len = 0; 
-    FILE *urllist = fopen("../sample/balcklist", "w");   
+    FILE *urllist = fopen("../io/urllist", "w");   
 
     while ((getline(&line, &len, origin_csv)) != -1) {
         
@@ -51,6 +51,7 @@ int main() {
                 }
                 break;
             }
+
             token = strtok(NULL, ",\"");
         }
     }
