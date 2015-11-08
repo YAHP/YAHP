@@ -1,0 +1,5 @@
+npm install esprima
+npm install htmlparser2
+npm install request
+
+There is still some problem of parsing js.
