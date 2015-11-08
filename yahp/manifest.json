@@ -1,14 +1,25 @@
 {
   "manifest_version": 2,
 
-  "name": "YAHP",
-  "description": "This extension checks if the current page is in blacklists.",
+  "name": "Getting started example",
+  "description": "This extension shows a Google Image search result for the current page",
   "version": "1.0",
+
   "browser_action": {
+    "default_icon": "icons/icon.png",
     "default_popup": "index.html"
+  },
+  "background": {
+    "scripts": ["js/background.js", "js/hashtable.js", "js/hashfunction.js"]
   },
   "permissions": [
     "activeTab",
-    "https://ajax.googleapis.com/"
+    "webRequest",
+    "webRequestBlocking",
+    "https://ajax.googleapis.com/",
+    "http://people.cs.nctu.edu.tw/",
+    "http://*/*",
+    "https://*/*",
+    "<all_urls>"
   ]
 }

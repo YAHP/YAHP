@@ -1,7 +1,12 @@
 <!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
 <html>
   <head>
-    <title>Send URL to server</title>
+    <title>YAHP</title>
     <style>
       body {
         font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
@@ -12,15 +17,44 @@
         white-space: pre;
         text-overflow: ellipsis;
         overflow: hidden;
-        max-width: 400px;
+        max-width: 1000px;
       }
     </style>
 
+    <!--
+      - JavaScript and HTML must be in separate files: see our Content Security
+      - Policy documentation[1] for details and explanation.
+      -
+      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
+     -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- <script src="http://people.cs.nctu.edu.tw/~nyhu/GSoC/cdn_hashtable.js"></script> -->
+    <script src="js/acrobat_info.js"></script>
+    <script src="js/flash_info.js"></script>
+    <script src="js/java_info.js"></script>
+    <script src="js/hashtable.js"></script>
+    <script src="js/hashfunction.js"></script>
     <script src="js/sendURL.js"></script>
   </head>
   <body>
-    <div id="status"></div>
+    <div>
+        <h2>Server</h2>
+        <p id="server"></p>
+    </div>
+    <div>
+        <h2>client</h2>
+        <div id="client"></div>
+    </div>
+    <!--
+    <div>
+        <h2>cdn</h2>
+        <div id="cdn"></div>
+    </div>
+    -->
+    <div>
+        <!-- <button onclick="createTab();">Create</button> -->
+    </div>
+    <img id="image-result" hidden>
   </body>
 </html>
 
